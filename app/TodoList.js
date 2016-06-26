@@ -6,7 +6,7 @@ class TodoList extends Component{
   render(){
     return(
       <div>
-      <h1>{this.props.label}</h1>
+      <h1>{this.props.title}</h1>
         {this.props.items.map((item,index) => {
           return(
             <ListItem done={item.done} title={item.title} key={index}/>

@@ -4,3 +4,11 @@ body {
 #root {
   height: 100%;
 }
+
+.hidden{
+  display: none;
+}
+
+.card{
+  padding-bottom: 10px;
+}

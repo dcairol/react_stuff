@@ -2,19 +2,18 @@
 
 import React, { Component } from 'react';
 import {render} from 'react-dom';
-import TodoList from './TodoList';
-let data = require('./data');
+import CardList from './CardList';
 
 class App extends Component {
   render(){
     return(
       <div>
-        {data.map((list) => {
-            return (<TodoList items={list.tasks} label={list.label} key={list.key} />);
+        {this.props.data.map((list) => {
+            return (<CardList cards={list.tasks} title={list.title} key={list.key} />);
           })}
       </div>
       );
   }
 }
 
-render(<App />, document.getElementById('root'));
+export default App;
