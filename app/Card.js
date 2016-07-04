@@ -1,6 +1,7 @@
+'use strict';
 import React, {Component, PropTypes} from 'react';
 import {render} from 'react-dom';
-import ListItem from './ListItem'
+import ListItem from './ListItem';
 
 class Card extends Component{
 
@@ -18,20 +19,15 @@ class Card extends Component{
         <a href="#" onClick={() => {this.toggle()}}>{this.state.visible ? "Hide" : "Show"}</a>
         <div className={this.state.visible ? "visible" : "hidden"}>
           {this.props.tasks.map((item,index) => {
-          return (<ListItem done={item.done} name={item.name} key={index} />)})}
+          return (<ListItem cardId={this.props.id} id={item.id} taskCallbacks={this.props.taskCallbacks} done={item.done} name={item.name} key={index} />)})}
         </div>
       </div>
       <div className={!this.state.newTask ? "hidden" : ""}>
         <input ref="newTask" type="text" placeholder="Something to do" /><input type="button" value="Submit" onClick={() => {
-        this.submit() }} /><input type="button" value="Cancel" onClick={() => {this.clearAndHide()}} />
+        this.props.taskCallbacks.add(this.props.id, this.refs.newTask.value, this.clearAndHide.bind(this)); }} /><input type="button" value="Cancel" onClick={() => {this.clearAndHide()}} />
       </div>
       <div><a href="#" onClick={() => {this.addTask()}}>Add task</a></div>
     </div>)
-  }
-
-  submit(){
-    this.doAddTask();
-    this.clearAndHide();
   }
 
   clearAndHide(){
@@ -64,7 +60,8 @@ Card.defaultProps = {
 }
 
 Card.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.object)
+  tasks: PropTypes.arrayOf(PropTypes.object),
+  taskCallbacks: PropTypes.object
 }
 
 export default Card;

@@ -7,6 +7,7 @@ class ListItem extends Component{
     return(
       <li>
         <input type='checkbox' defaultChecked={this.props.done} />{this.props.name}
+        <a href='#' onClick={() => { this.props.taskCallbacks.delete(this.props.cardId, this.props.id) }} >Delete</a>
       </li>
       );
   }
@@ -20,7 +21,10 @@ const namePropType = (props, propName, componentName) => {
 }
 
 ListItem.propTypes = {
-  name: namePropType
+  name: namePropType,
+  taskCallbacks: PropTypes.object,
+  cardId: PropTypes.number,
+  id: PropTypes.number
 }
 
 export default ListItem;

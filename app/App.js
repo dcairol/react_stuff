@@ -9,7 +9,7 @@ class App extends Component {
     return(
       <div>
         {this.props.data.map((list) => {
-            return (<CardList cards={list.tasks} title={list.title} key={list.key} />);
+            return (<CardList taskCallbacks={this.props.taskCallbacks} cards={list.tasks} title={list.title} key={list.key} />);
           })}
       </div>
       );
